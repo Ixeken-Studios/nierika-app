@@ -1,0 +1,11 @@
+Welcome to Nierika 1.0! Initial release.
+• Material 3 Expressive UI with fluid spatial motion and dynamic wallpaper colors.
+• 13 custom tonal themes and 8 local fonts (Google Sans Flex, Outfit, DM Sans, etc.).
+• Custom albums with custom covers, tags, descriptions, and flexible sorting.
+• ZIP Export & Import to backup and share complete photo collections.
+• Full photo editor with canvas aspect ratio expansion, color adjustments, draw/pixelate markup, and text overlays.
+• Video editor with trimming, audio control, and frame extraction powered by Media3.
+• Hidden Vault with PIN and biometric protection.
+• App camouflage: disguise launcher icon and title as Nepo Calculator, Drafto Notes, Camera, and more.
+• EXIF metadata viewer and one-tap metadata stripper for privacy.
+• 100% offline and strictly private.

@@ -1,0 +1,28 @@
+Nierika is a modern alternative gallery app built with Jetpack Compose and Material Design 3 Expressive, focused on privacy, fluid performance, and powerful local media management.
+
+Key Features:
+
+• Material 3 Expressive & Large Screen Ready
+Adaptive UI designed for foldables, tablets, and wide screens. Fluid spatial motion, dynamic wallpaper-based tonal color schemes, 13 handcrafted color palettes, and 8 customizable local fonts (including Google Sans Flex, Outfit, DM Sans, and Nunito).
+
+• Custom Albums & Organization
+Create custom collections with personalized covers, detailed descriptions, custom tags, and precise chronological sorting. Manage media in batches with ease.
+
+• ZIP Export & Import
+Seamlessly backup, export, or import entire photo albums in standard .ZIP archives directly on your device.
+
+• Photo & Video Editor
+- Canvas Expansion: Expand photo canvas to standard and custom aspect ratios with blurred or solid background fills.
+- Fine Adjustments: Fine-tune brightness, contrast, saturation, highlights, shadows, and warmth.
+- Markup & Drawing: Freehand brush, pixelate (blur/censor tool), eraser, and rich text overlays.
+- Video Editing: Trim video clips, adjust audio levels, mute sound, and extract high-resolution frames as photos. Powered by AndroidX Media3.
+
+• Hidden Vault & App Disguise
+- Secure Vault: A private, isolated sandbox locked with PIN and biometric authentication to keep sensitive photos and videos hidden from all other apps.
+- Launcher Disguise: Change Nierika's launcher icon and app name on the fly to camouflage it as Nepo Calculator, Drafto Notes, Camera, or Library.
+
+• EXIF Details & Privacy Cleaner
+Inspect complete capture parameters (camera model, exposure, ISO, focal length, location altitude) and strip all metadata with a single tap before sharing.
+
+• 100% Local & Offline Privacy
+Zero tracking, zero analytics, and zero cloud uploads. Your memories stay strictly on your device.

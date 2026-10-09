@@ -1,0 +1,11 @@
+¡Bienvenido a Nierika 1.0! Lanzamiento inicial.
+• Interfaz Material 3 Expressive con movimiento fluido y colores dinámicos.
+• 13 temas tonales y 8 fuentes integradas (Google Sans Flex, Outfit, DM Sans, etc.).
+• Álbumes personalizados con portadas propias, etiquetas, notas y orden cronológico.
+• Exportación e importación completa de álbumes en formato ZIP.
+• Editor fotográfico con expansión de lienzo, ajustes, pincel, pixelado y texto.
+• Editor de video con recorte, control de volumen y guardado de fotogramas vía Media3.
+• Bóveda secreta protegida con PIN y biometría.
+• Camuflaje del icono y nombre de la app (Nepo Calculadora, Drafto Notas, Cámara, etc.).
+• Visor y limpiador de metadatos EXIF para mayor privacidad.
+• Funcionamiento 100% offline y completamente privado.

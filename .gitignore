@@ -1,0 +1,175 @@
+# ==============================================================================
+# NIERIKA - Production Minimal Git Ignore Rules
+# Strict Scope: ONLY files required to build the application are tracked.
+# Excludes: Secrets, Keystores, Agent configs, Context docs, References, Artifacts & IDEs
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Private Keys, Keystores, Certificates & Signing Secrets
+# ------------------------------------------------------------------------------
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.pk8
+*.der
+*.cert
+*.crt
+*.cer
+*.csr
+*.bks
+nierika-release.jks
+
+# ------------------------------------------------------------------------------
+# 2. Local Configuration & Credential Files
+# ------------------------------------------------------------------------------
+local.properties
+keystore.properties
+secrets.properties
+signing.properties
+secure.properties
+private.properties
+*.properties.local
+*.local.properties
+.env
+.env.*
+*.env
+*.secret
+*.token
+*.credential
+*.credentials
+google-services.json
+GoogleService-Info.plist
+play-service-account*.json
+service-account*.json
+service_account*.json
+api-key*.json
+credentials*.json
+
+
+# ------------------------------------------------------------------------------
+# 3. External Reference Codebases (Not part of Nierika build)
+# ------------------------------------------------------------------------------
+reference/
+
+# ------------------------------------------------------------------------------
+# 4. Android & Gradle Build Outputs & Artifacts
+# ------------------------------------------------------------------------------
+.gradle/
+build/
+**/build/
+.cxx/
+.externalNativeBuild/
+bin/
+gen/
+out/
+
+# Binaries & Bundles
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# ProGuard / R8 mapping and seed outputs (when outside build dir)
+mapping/
+seeds/
+
+# ------------------------------------------------------------------------------
+# 5. IDE, Tooling & Editor Workspaces
+# ------------------------------------------------------------------------------
+*.iml
+.idea/
+*.iws
+*.ipr
+.kotlin/
+.vscode/
+.fleet/
+.cursor/
+
+# ------------------------------------------------------------------------------
+# 6. Profiler, Memory Dumps, Traces & Diagnostics
+# ------------------------------------------------------------------------------
+captures/
+profile/
+profiler/
+*.hprof
+*.heapsnapshot
+*.perfetto-trace
+*.perfetto
+*.trace
+*.systrace
+*.traces
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# ------------------------------------------------------------------------------
+# 7. Database Dumps & Local Device Backups
+# ------------------------------------------------------------------------------
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+/databases/
+*.backup
+
+# ------------------------------------------------------------------------------
+# 8. Ad-hoc Screen Captures, Recordings & Test Media
+# ------------------------------------------------------------------------------
+/screenshot*.png
+/screenshot*.jpg
+/screencap*.png
+/recording*.mp4
+/recording*.webm
+/demo*.mp4
+/device-*.png
+/screen-*.png
+/screen-*.mp4
+/test_media/
+/test-media/
+/samples/
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ------------------------------------------------------------------------------
+# 9. Temporary, Scratch & Swap Files
+# ------------------------------------------------------------------------------
+tmp/
+temp/
+scratch/
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.rej
+*~
+*.swp
+*.swo
+
+# ------------------------------------------------------------------------------
+# 10. Operating System Metadata & Garbage
+# ------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory

@@ -1,0 +1,28 @@
+Nierika es una alternativa de galería moderna desarrollada con Jetpack Compose y las pautas de Material Design 3 Expressive, diseñada con un fuerte enfoque en privacidad absoluta, rendimiento fluido y herramientas avanzadas de gestión multimedia local.
+
+Funciones clave:
+
+• Diseño Material 3 Expressive, Plegables y Pantallas Grandes
+Interfaz totalmente responsiva y optimizada para dispositivos plegables (foldables), tablets y pantallas anchas. Movimiento espacial fluido, paleta tonal dinámica adaptada a tu fondo de pantalla, 13 esquemas de color artesanales y 8 tipografías locales de alta calidad (incluyendo Google Sans Flex, Outfit, DM Sans y Nunito).
+
+• Álbumes y Organización
+Crea colecciones a tu medida con portadas personalizadas, descripciones, etiquetas individuales y orden cronológico preciso. Administra tus fotos y videos en lote sin complicaciones.
+
+• Exportación e Importación en ZIP
+Respalda, exporta o comparte álbumes completos en formato estándar .ZIP directamente en tu dispositivo sin necesidad de conexión externa.
+
+• Suite de Edición de Fotos y Videos
+- Expansión de Lienzo: Modifica la proporción de aspecto con marcos desenfocados o colores sólidos.
+- Ajustes de Color: Controla brillo, contraste, saturación, luces, sombras y calidez.
+- Dibujo y Anotaciones: Pincel libre, desenfoque/pixelado (censura de áreas sensibles), borrador y texto enriquecido.
+- Edición de Video: Recorta metraje, controla niveles de volumen, silencia audio y extrae fotogramas en alta resolución. Desarrollado con AndroidX Media3.
+
+• Bóveda Secreta y Camuflaje
+- Bóveda Segura: Entorno privado aislado, bloqueado con PIN o huella digital para proteger fotos y videos del resto del sistema.
+- Camuflaje de Icono: Cambia el icono y nombre en el lanzador al instante por Nepo Calculadora, Drafto Notas, Cámara o Biblioteca.
+
+• Detalles EXIF y Limpiador de Privacidad
+Inspecciona parámetros de captura completos (cámara, exposición, ISO, longitud focal, altitud) y elimina todos los metadatos con un solo toque antes de compartir.
+
+• 100% Local y Privacidad Total
+Cero analíticas, cero rastreadores y cero subidas a la nube. Tus recuerdos permanecen exclusivamente en tu dispositivo.

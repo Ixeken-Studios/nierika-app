@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nierika</string>
+    <string name="app_alias_nierika">Nierika</string>
+    <string name="app_alias_gallery">Galería</string>
+    <string name="app_alias_photos">Fotos</string>
+    <string name="app_alias_library">Biblioteca</string>
+    <string name="app_alias_camera">Cámara</string>
+    <string name="app_alias_calculator">Calculadora</string>
+    <string name="app_alias_notes">Notas</string>
+    <string name="app_alias_nepo">Nepo</string>
+    <string name="app_alias_drafto">Drafto</string>
+</resources>

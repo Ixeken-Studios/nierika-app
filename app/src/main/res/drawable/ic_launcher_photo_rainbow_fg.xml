@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.21"
+        android:scaleY="0.21"
+        android:translateX="33.0"
+        android:translateY="30.9">
+        <!-- Marco de foto instantánea con esquinas redondeadas -->
+        <path
+            android:pathData="M 32,0 L 168,0 C 185.673,0 200,14.327 200,32 L 200,188 C 200,205.673 185.673,220 168,220 L 32,220 C 14.327,220 0,205.673 0,188 L 0,32 C 0,14.327 14.327,0 32,0 Z"
+            android:fillColor="#D9D9D9"/>
+        <!-- Pantalla/área interna oscura -->
+        <path
+            android:pathData="M 26,13 L 174,13 C 182.837,13 190,20.163 190,29 L 190,147 C 190,155.837 182.837,163 174,163 L 26,163 C 17.163,163 10,155.837 10,147 L 10,29 C 10,20.163 17.163,13 26,13 Z"
+            android:fillColor="#1A1A1A"/>
+        <!-- Franjas de arcoíris en la base -->
+        <path
+            android:pathData="M 60,163 L 80,163 L 80,220 L 60,220 Z"
+            android:fillColor="#D64332"/>
+        <path
+            android:pathData="M 80,163 L 100,163 L 100,220 L 80,220 Z"
+            android:fillColor="#F7BF32"/>
+        <path
+            android:pathData="M 100,163 L 120,163 L 120,220 L 100,220 Z"
+            android:fillColor="#68CA2F"/>
+        <path
+            android:pathData="M 120,163 L 140,163 L 140,220 L 120,220 Z"
+            android:fillColor="#5281C3"/>
+        <!-- Ojo izquierdo -->
+        <path
+            android:pathData="M 80,93.5 C 80,103.165 73.2843,97.5 65,97.5 C 56.7157,97.5 50,103.165 50,93.5 C 50,83.835 56.7157,76 65,76 C 73.2843,76 80,83.835 80,93.5 Z"
+            android:fillColor="#F7F7F7"/>
+        <!-- Ojo derecho -->
+        <path
+            android:pathData="M 150,93.5 C 150,103.165 143.284,97.5 135,97.5 C 126.716,97.5 120,103.165 120,93.5 C 120,83.835 126.716,76 135,76 C 143.284,76 150,83.835 150,93.5 Z"
+            android:fillColor="#F7F7F7"/>
+        <!-- Sonrisa -->
+        <path
+            android:pathData="M 93,108 C 98.8529,112.014 102.147,111.986 108,108"
+            android:strokeColor="#F7F7F7"
+            android:strokeWidth="6"
+            android:strokeLineCap="round"/>
+    </group>
+</vector>
