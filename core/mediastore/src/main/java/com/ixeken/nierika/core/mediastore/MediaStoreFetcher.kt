@@ -48,7 +48,8 @@ class MediaStoreFetcher(private val context: Context) {
     suspend fun fetchMedia(
         offset: Int,
         limit: Int,
-        sortAscending: Boolean = false
+        sortAscending: Boolean = false,
+        mediaType: Int? = null
     ): List<RawMediaItem> = withContext(Dispatchers.IO) {
         val mediaList = mutableListOf<RawMediaItem>()
 
@@ -77,7 +78,11 @@ class MediaStoreFetcher(private val context: Context) {
         val sortSql = "CASE WHEN ${MediaStore.Files.FileColumns.DATE_TAKEN} > 0 THEN ${MediaStore.Files.FileColumns.DATE_TAKEN} ELSE ${MediaStore.Files.FileColumns.DATE_MODIFIED} * 1000 END $sortDirection"
 
         val baseSelection = buildList {
-            add("(${MediaStore.Files.FileColumns.MEDIA_TYPE} = ${MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE} OR ${MediaStore.Files.FileColumns.MEDIA_TYPE} = ${MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO})")
+            if (mediaType != null) {
+                add("${MediaStore.Files.FileColumns.MEDIA_TYPE} = $mediaType")
+            } else {
+                add("(${MediaStore.Files.FileColumns.MEDIA_TYPE} = ${MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE} OR ${MediaStore.Files.FileColumns.MEDIA_TYPE} = ${MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO})")
+            }
             add("${MediaStore.MediaColumns.SIZE} > 0")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 add("${MediaStore.MediaColumns.IS_PENDING} = 0")

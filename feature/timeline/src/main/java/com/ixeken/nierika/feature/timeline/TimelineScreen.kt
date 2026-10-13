@@ -108,6 +108,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.paging.LoadState
 import com.ixeken.nierika.core.designsystem.component.NierikaFastScroller
@@ -283,6 +284,8 @@ fun TimelineScreen(
     val mediaCounts by timelineViewModel.mediaCounts.collectAsState()
     val pendingTrashIds by timelineViewModel.pendingTrashIds.collectAsState()
     var isMultiSelectDeleteConfirmVisible by remember { mutableStateOf(false) }
+    val favoriteOverrides = remember { mutableStateMapOf<Long, Boolean>() }
+    var viewerItems by remember { mutableStateOf<List<MediaItem>>(emptyList()) }
 
     LaunchedEffect(pagingItems.loadState.refresh) {
         if (pagingItems.loadState.refresh is androidx.paging.LoadState.NotLoading) {
@@ -528,12 +531,34 @@ fun TimelineScreen(
         LayoutMode.COMFORTABLE -> if (isWideScreen) 3 else 2
     }
 
-    val snapshotItems = remember(pagingItems.itemSnapshotList, pendingTrashIds) {
+    val snapshotItems = remember(pagingItems.itemSnapshotList, pendingTrashIds, favoriteOverrides.toMap()) {
         val raw = pagingItems.itemSnapshotList.items.filterNotNull()
-        if (pendingTrashIds.isEmpty()) {
+        val filtered = if (pendingTrashIds.isEmpty()) {
             raw
         } else {
             raw.filter { it.id !in pendingTrashIds }
+        }
+        if (favoriteOverrides.isEmpty()) {
+            filtered
+        } else {
+            filtered.map { item ->
+                val override = favoriteOverrides[item.id]
+                if (override != null && override != item.isFavorite) item.copy(isFavorite = override) else item
+            }
+        }
+    }
+
+    LaunchedEffect(isViewerVisible) {
+        if (isViewerVisible) {
+            viewerItems = snapshotItems
+        } else {
+            viewerItems = emptyList()
+        }
+    }
+
+    LaunchedEffect(snapshotItems) {
+        if (isViewerVisible && snapshotItems.size > viewerItems.size) {
+            viewerItems = snapshotItems
         }
     }
 
@@ -1130,6 +1155,7 @@ fun TimelineScreen(
                     onFavoriteClick = if (!isTrashFilter) {
                         {
                             val newFavState = !allSelectedAreFavorites
+                            itemsToFav.forEach { favoriteOverrides[it.id] = newFavState }
                             timelineViewModel.toggleFavoriteBatch(itemsToFav, newFavState)
                             selectedMediaIds.clear()
                         }
@@ -1294,7 +1320,7 @@ fun TimelineScreen(
             }
 
             AnimatedVisibility(
-                visible = isViewerVisible && snapshotItems.isNotEmpty(),
+                visible = isViewerVisible && (viewerItems.isNotEmpty() || snapshotItems.isNotEmpty()),
                 enter = scaleIn(
                     animationSpec = spring(
                         stiffness = Spring.StiffnessMediumLow,
@@ -1322,20 +1348,25 @@ fun TimelineScreen(
                 label = "detailAnimatedScope",
                 modifier = Modifier.fillMaxSize().zIndex(150f)
             ) {
-                val validIndex = remember(snapshotItems, activeViewerMediaId, activeViewerMediaIndex) {
+                val currentViewerItems = if (viewerItems.isNotEmpty()) viewerItems else snapshotItems
+                val validIndex = remember(currentViewerItems, activeViewerMediaId, activeViewerMediaIndex) {
                     if (activeViewerMediaId != null) {
-                        val found = snapshotItems.indexOfFirst { it.id == activeViewerMediaId }
+                        val found = currentViewerItems.indexOfFirst { it.id == activeViewerMediaId }
                         if (found != -1) found else activeViewerMediaIndex
                     } else {
                         activeViewerMediaIndex
-                    }.coerceIn(0, snapshotItems.lastIndex.coerceAtLeast(0))
+                    }.coerceIn(0, currentViewerItems.lastIndex.coerceAtLeast(0))
                 }
-                if (snapshotItems.isNotEmpty()) {
+                if (currentViewerItems.isNotEmpty()) {
                     MediaDetailScreen(
-                        items = snapshotItems,
+                        items = currentViewerItems,
                         initialIndex = validIndex,
                         onBackClick = {
                             isViewerVisible = false
+                            viewerItems = emptyList()
+                            if (uiState.selectedFilter == QuickFilter.FAVORITES) {
+                                timelineViewModel.refreshSilent()
+                            }
                             if (initialViewUri != null) {
                                 onDismissExternalView?.invoke()
                             }
@@ -1350,6 +1381,7 @@ fun TimelineScreen(
                             requestRestore(listOf(item), onAccepted)
                         },
                         onToggleFavorite = { item ->
+                            favoriteOverrides[item.id] = item.isFavorite
                             timelineViewModel.toggleFavorite(item.id, item.isFavorite)
                         },
                         onDuplicateClick = { item, onDuplicated ->
@@ -1367,7 +1399,7 @@ fun TimelineScreen(
                         onPageChange = { page, item ->
                             if (isViewerVisible) {
                                 activeViewerMediaId = item.id
-                                val found = snapshotItems.indexOfFirst { it.id == item.id }
+                                val found = currentViewerItems.indexOfFirst { it.id == item.id }
                                 activeViewerMediaIndex = if (found != -1) found else page
                             }
                         },

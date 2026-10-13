@@ -104,12 +104,12 @@ class TimelineViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val mediaPagingData: Flow<PagingData<MediaItem>> = combine(
-        _uiState,
-        userPreferencesRepository.userPreferences,
+        _uiState.map { Triple(it.selectedFilter, it.selectedSortOrder, it.permissionGranted) }.distinctUntilChanged(),
         _refreshTrigger
-    ) { state, prefs, refreshId ->
-        TimelineRefreshParams(state.selectedFilter, state.selectedSortOrder, state.permissionGranted, refreshId)
-    }.flatMapLatest { params ->
+    ) { (filter, sortOrder, permissionGranted), refreshId ->
+        TimelineRefreshParams(filter, sortOrder, permissionGranted, refreshId)
+    }.distinctUntilChanged()
+    .flatMapLatest { params ->
         if (params.permissionGranted) {
             getMediaTimelineUseCase(quickFilter = params.filter, sortOrder = params.sortOrder)
         } else {
@@ -311,7 +311,6 @@ class TimelineViewModel @Inject constructor(
     fun toggleFavorite(mediaId: Long, isFavorite: Boolean) {
         viewModelScope.launch {
             mediaRepository.toggleFavorite(mediaId, isFavorite)
-            refreshSilent()
         }
     }
 

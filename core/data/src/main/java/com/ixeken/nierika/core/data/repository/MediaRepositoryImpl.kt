@@ -35,7 +35,8 @@ import javax.inject.Inject
  */
 class MediaPagingSource(
     private val fetcher: MediaStoreFetcher,
-    private val sortOrder: SortOrder
+    private val sortOrder: SortOrder,
+    private val quickFilter: QuickFilter = QuickFilter.ALL
 ) : PagingSource<Int, RawMediaItem>() {
 
     override fun getRefreshKey(state: PagingState<Int, RawMediaItem>): Int? {
@@ -50,11 +51,17 @@ class MediaPagingSource(
         val currentOffset = params.key ?: 0
         val loadSize = params.loadSize
 
+        val targetMediaType = when (quickFilter) {
+            QuickFilter.VIDEOS -> MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
+            else -> null
+        }
+
         return try {
             val items = fetcher.fetchMedia(
                 offset = currentOffset,
                 limit = loadSize,
-                sortAscending = sortOrder == SortOrder.ASCENDING
+                sortAscending = sortOrder == SortOrder.ASCENDING,
+                mediaType = targetMediaType
             )
             LoadResult.Page(
                 data = items,
@@ -88,7 +95,7 @@ class MediaRepositoryImpl @Inject constructor(
                 prefetchDistance = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { MediaPagingSource(fetcher, sortOrder) }
+            pagingSourceFactory = { MediaPagingSource(fetcher, sortOrder, quickFilter) }
         ).flow.map { pagingData ->
             pagingData.map { raw ->
                 val metadata = metadataDao.getMetadata(raw.id)
